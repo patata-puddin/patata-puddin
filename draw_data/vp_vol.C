@@ -13,7 +13,7 @@ void vp_vol()
 {
     gROOT->Reset();
 
-TFile *P1dfile =new TFile("Pb_108_komac_shieldO.root", "read");
+TFile *P1dfile =new TFile("Pb_108_final_2.root", "read");
 TCanvas* c1 = new TCanvas("c1", "Histogram of Entering Particle in shield", 20, 20, 2000, 2000);
   c1->SetGrid();
 
@@ -72,23 +72,24 @@ TCanvas* c1 = new TCanvas("c1", "Histogram of Entering Particle in shield", 20, 
 //   //TH1D *hist_DAQ_2212_KE = new TH1D("With Al Shielding", "Proton Energy entering DAQ", 100, 0, 60);
 //   // TH1D *hist_DAQ_22_KE = new TH1D("With Al Shielding-", "Gamma Energy entering DAQ", 40, 0, 15);
 //   // TH1D *hist_DAQ_2112_KE = new TH1D("With Al Shielding ", "Neutron Energy entering DAQ", 40, 0, 52);
+int world_vp = 0;
 
-
-//   auto Entry_KE = TVol2->GetBranch("pdg")->GetEntries() ;
+  auto Entry_KE = TVol1->GetBranch("pdg")->GetEntries() ;
  
-//    for (j=0;j<Entry_KE; j++){
-//       TVol2 -> GetEntry(j);
+   for (j=0;j<Entry_KE; j++){
+      TVol1 -> GetEntry(j);
 
-//       if(sh_Pdg == 2212) {
-//           hist_sh_2212_KE -> Fill(sh_KE);  
-//       }
-//       if(sh_Pdg == 22) {
-//           hist_sh_22_KE -> Fill(sh_KE);  
-//       }
-//       if(sh_Pdg == 2112) {
-//           hist_sh_2112_KE -> Fill(sh_KE);  
-//       }
-//    }
+      if(sh_Pdg == 2212) {
+        if ()
+          world_vp += 1; 
+      }
+      if(sh_Pdg == 22) {
+          hist_sh_22_KE -> Fill(sh_KE);  
+      }
+      if(sh_Pdg == 2112) {
+          hist_sh_2112_KE -> Fill(sh_KE);  
+      }
+   }
 
 //    // //////Draw-----///////////------------///////
 //   TCanvas* c2 = new TCanvas("c2", "KE comparision", 20, 20, 450, 1000);

@@ -10,11 +10,11 @@
 //entering shield- total particle 
 //entering shield- E dist of p,r,n
 using namespace std;
-void ent_det2_ratio_draw()
+void ent_det2_ratio_draw_06()
 {
     gROOT->Reset();
 
-TFile *P1dfile =new TFile("out_M123456.root", "read");
+TFile *P1dfile =new TFile("out_06_p1_Z.root", "read");
 
 
   TTree *TVol2 = (TTree *) P1dfile -> Get("Detector_2");
@@ -38,45 +38,25 @@ TFile *P1dfile =new TFile("out_M123456.root", "read");
   TVol2 -> SetBranchAddress("py",&posy);
   TVol2 -> SetBranchAddress("pz",&posz);
   TVol2 -> SetBranchAddress("vpvol",&vpvol_p); 
+//position1
+  TH2D *hist_p = new TH2D("proton", "proton", 20, 1755, 2045 , 5, -125, 15);
+  TH2D *hist_g = new TH2D("gamma", "gamma",   20, 1755, 2045 , 5, -125, 15);
+  TH2D *hist_e = new TH2D("electron", "electron",   20, 1755, 2045 , 5, -125, 15);
+  TH2D *hist_pge = new TH2D("p_g_e", "proton+gamma+electron",   20, 1755, 2045 , 5, -125, 15);
+  TH2D *hist_ge = new TH2D("g_e", "gamma+electron",   20, 1755, 2045 , 5, -125, 15);
+// //position3 
+  // TH2D *hist_p = new TH2D("proton", "proton", 5, 1790, 1930 , 20, -123, 167);
+  // TH2D *hist_g = new TH2D("gamma", "gamma", 5, 1790, 1930 , 20, -123, 167);
+  // TH2D *hist_e = new TH2D("electron", "electron",  5, 1790, 1930 , 20, -123, 167);
+  // TH2D *hist_pge = new TH2D("p_g_e", "proton+gamma+electron",  5, 1790, 1930 , 20, -123, 167);
+  // TH2D *hist_ge = new TH2D("g_e", "gamma+electron",  5, 1790, 1930 , 20, -123, 167);
 
-//05 komac
-  TH2D *hist_p = new TH2D("proton", "proton", 6, 1750, 2050 , 9,-174, 126);
-  TH2D *hist_g = new TH2D("gamma", "gamma", 6, 1750, 2050 , 9,-174, 126);
-  TH2D *hist_e = new TH2D("electron", "electron", 6,1750, 2050 , 9,-174, 126);
-  TH2D *hist_pge = new TH2D("p_g_e", "proton+gamma+electron", 6, 1750, 2050 , 9, -174, 126);
-  TH2D *hist_ge = new TH2D("g_e", "gamma+electron_dump", 6, 1750, 2050 , 9,-174, 126);
-  
-  // //new size, non shift
-  // TH2D *hist_p = new TH2D("proton", "proton", 6, 2050, 2350 , 8,-150, 150);
-  // TH2D *hist_g = new TH2D("gamma", "gamma", 6, 2050, 2350 , 8,-150, 150);
-  // TH2D *hist_e = new TH2D("electron", "electron", 6, 2050, 2350 , 8,-150, 150);
-  // TH2D *hist_pge = new TH2D("p_g_e", "proton+gamma+electron", 6, 2050, 2350 , 8,-150, 150);
-  // TH2D *hist_ge = new TH2D("g_e", "gamma+electron_dump", 6, 2050, 2350 , 8,-150, 150);
-
-//original size , shift
-  // TH2D *hist_p = new TH2D("proton", "proton", 6, 1550, 2150 , 8,-440, 440);
-  // TH2D *hist_g = new TH2D("gamma", "gamma",  6, 1550, 2150 , 8,-440, 440);
-  // TH2D *hist_e = new TH2D("electron", "electron",  6, 1550, 2150 , 8,-440, 440);
-  // TH2D *hist_pge = new TH2D("p_g_e", "proton+gamma+electron", 6, 1550, 2150 , 8,-440, 440);
-  // TH2D *hist_ge = new TH2D("g_e", "gamma+electron_dump",  6, 1550, 2150 , 8,-440, 440);
-//original size , shift, crop it to small
-  // TH2D *hist_p = new TH2D("proton", "proton", 10, 1600, 2100 , 9,-150, 150);
-  // TH2D *hist_g = new TH2D("gamma", "gamma",  10, 1600, 2100 , 9,-150, 150);
-  // TH2D *hist_e = new TH2D("electron", "electron",  10, 1600, 2100 , 9,-150, 150);
-  // TH2D *hist_pge = new TH2D("p_g_e", "proton+gamma+electron", 10, 1600, 2100 , 9,-150, 150);
-  // TH2D *hist_ge = new TH2D("g_e", "gamma+electron_dump", 10, 1600, 2100 , 9,-150, 150);
-
-  //   TH2D *hist_p = new TH2D("proton", "proton", 6, 1550, 2150 , 8,-440, 440);
-  // TH2D *hist_g = new TH2D("gamma", "gamma", 6, 1550, 2150 , 8,-440, 440);
-  // TH2D *hist_e = new TH2D("electron", "electron", 6,1550, 2150 , 8,-440, 440);
-  // TH2D *hist_pge = new TH2D("p_g_e", "proton+gamma+electron", 6, 1550, 2150 , 8,-440, 440);
-  // TH2D *hist_ge = new TH2D("g_e", "gamma+electron_dump", 6, 1550, 2150 , 8,-440, 440);
-
-  // TH2D *hist_p = new TH2D("proton", "proton", 6, 2000, 2467 , 8, 0, 440);
-  // TH2D *hist_g = new TH2D("gamma", "gamma",  6, 2000, 2467 , 8, 0, 440);
-  // TH2D *hist_e = new TH2D("electron", "electron",  6, 2000, 2467 , 8, 0, 440);
-  // TH2D *hist_pge = new TH2D("p_g_e", "proton+gamma+electron",  6, 2000, 2467 , 8, 0, 440);
-  // TH2D *hist_ge = new TH2D("g_e", "gamma+electron",  6, 2000, 2467 , 8, 0, 440);
+// //position2
+  // TH2D *hist_p = new TH2D("proton", "proton", 20, 1830, 2120 , 5, -55, 85);
+  // TH2D *hist_g = new TH2D("gamma", "gamma", 20, 1830, 2120 , 5, -55, 85);
+  // TH2D *hist_e = new TH2D("electron", "electron",  20, 1830, 2120 , 5, -55, 85);
+  // TH2D *hist_pge = new TH2D("p_g_e", "proton+gamma+electron",  20, 1830, 2120 , 5, -55, 85);
+  // TH2D *hist_ge = new TH2D("g_e", "gamma+electron",  20, 1830, 2120 , 5, -55, 85);
 
   //((strcmp(vpvol_p, "World") == 0)||(strcmp(vpvol_p, "Pb_Shield") == 0)||(strcmp(vpvol_p, "Dump") == 0))
 //      if((abs(posx+225) < 0.0000001) && ((strcmp(vpvol_p, "Detector2") != 0))){           
@@ -151,7 +131,7 @@ TFile *P1dfile =new TFile("out_M123456.root", "read");
     //hist_p->SetStats(0);  
     // hist_p->SetMaximum(83);
     hist_p->SetMarkerSize(2);
-    hist_p->Draw("text same0 colz");    
+    hist_p->Draw("text89 same0 colz");    
 
     // std::cout <<"max: " <<max<< "\n";
     // std::cout <<"min: " <<min<< "\n";
@@ -162,14 +142,14 @@ TFile *P1dfile =new TFile("out_M123456.root", "read");
     //hist_g->SetStats(0);
     // hist_g->SetMaximum(206);
     hist_g->SetMarkerSize(2);
-    hist_g->Draw("text same0 colz"); 
+    hist_g->Draw("text89 same colz"); 
 
     c3->cd(3);
     hist_e->GetXaxis()->SetTitle("z(mm)");
     hist_e->GetYaxis()->SetTitle("y(mm)");
     //hist_e->SetStats(0);
     hist_e->SetMarkerSize(2);
-    hist_e->Draw("text same0 colz"); 
+    hist_e->Draw("text89 same0 colz"); 
 
 // gStyle->SetPaintTextFormat("1.2f");
 //-----------------do this to make format long
@@ -181,7 +161,7 @@ TFile *P1dfile =new TFile("out_M123456.root", "read");
     h2_ratio->SetStats(0);  
     h2_ratio->GetXaxis()->SetTitle("z(mm)");
     h2_ratio->GetYaxis()->SetTitle("y(mm)");
-    h2_ratio->Draw(" text same0 colz");
+    h2_ratio->Draw(" text89 same0 colz");
 
   //  c3->cd(5);
   //   TH2D *h2_ratio1 = (TH2D*)hist_p->Clone("h2_ratio1");
@@ -200,7 +180,7 @@ TFile *P1dfile =new TFile("out_M123456.root", "read");
     h2_ratio2->SetStats(0);  
     h2_ratio2->GetXaxis()->SetTitle("z(mm)");
     h2_ratio2->GetYaxis()->SetTitle("y(mm)");
-    h2_ratio2->Draw(" text same0 colz");
+    h2_ratio2->Draw(" text89 same0 colz");
 
     c3->cd(6);
     TH2D *h2_ratio3 = (TH2D*)hist_e->Clone("h2_ratio3");
@@ -210,5 +190,5 @@ TFile *P1dfile =new TFile("out_M123456.root", "read");
     h2_ratio3->Scale(100.0);
     h2_ratio3->GetXaxis()->SetTitle("z(mm)");
     h2_ratio3->GetYaxis()->SetTitle("y(mm)");
-    h2_ratio3->Draw(" text same0 colz");
+    h2_ratio3->Draw(" text89 same0 colz");
 }

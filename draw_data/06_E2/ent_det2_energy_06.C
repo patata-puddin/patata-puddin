@@ -10,11 +10,11 @@
 //entering shield- total particle 
 //entering shield- E dist of p,r,n
 using namespace std;
-void ent_det2_energy()
+void ent_det2_energy_06()
 {
     gROOT->Reset();
 
-TFile *P1dfile =new TFile("out_noal.root", "read");
+TFile *P1dfile =new TFile("out_06_p1_Z.root", "read");
 
 
   TTree *TVol2 = (TTree *) P1dfile -> Get("Detector_2");
@@ -43,40 +43,44 @@ TFile *P1dfile =new TFile("out_noal.root", "read");
 
 
   TH1D *KE_p_over = new TH1D("p_KE_over", "proton_KE dist_over", 30,0,30);
-  TH1D *KE_g_over = new TH1D("g_KE_over", "gamma_KE dist_over", 30,0,15);
-  TH1D *KE_e_over = new TH1D("e_KE_over", "electron_KE dist_over", 30,0,0.025);
-  // TH1D *hist_pge = new TH1D("p_g_e", "proton+gamma+electron", 6, 1847, 2467 , 8, -440, 440);
-  // TH1D *hist_ge = new TH1D("g_e", "gamma+electron_dump", 6, 1847, 2467 , 8, -440, 440);
+  TH1D *KE_g_over = new TH1D("g_KE_over", "gamma_KE dist_over", 30,0,1);
+  TH1D *KE_e_over = new TH1D("e_KE_over", "electron_KE dist_over", 30,0,1);
 
-  // TH3D *hist_p = new TH3D("proton", "proton", 6, 1847, 2467 , 8, -440, 440, 10,0,30);
-  // TH3D *hist_g = new TH3D("gamma", "gamma",  6, 2000, 2467 , 8, 0, 440, 10,0,30);
-  // TH3D *hist_e = new TH3D("electron", "electron",  6, 2000, 2467 , 8, 0, 440, 10,0,30);
-  // TH3D *hist_pge = new TH3D("p_g_e", "proton+gamma+electron",  6, 2000, 2467 , 8, 0, 440, 10,0,30);
-  // TH3D *hist_ge = new TH3D("g_e", "gamma+electron",  6, 2000, 2467 , 8, 0, 440, 10,0,30);
-  //ㅇㅝㄴ래 있있던던것
-  TH2D *hist_p = new TH2D("proton", "proton entry_combi2", 6, 1750, 2050 , 9,-174, 126);
-  TH2D *hist_p_energy = new TH2D("proton_energy", "proton total energy_combi2", 6, 1750, 2050 , 9,-174, 126);
-  TH2D *hist_e = new TH2D("electron", "electron entry_combi2",6, 1750, 2050 , 9,-174, 126);
-  TH2D *hist_e_energy = new TH2D("electron_energy", "electron total energy_combi2", 6, 1750, 2050 , 9,-174, 126);
-  TH2D *hist_g = new TH2D("gamma", "gamma entry_combi2", 6, 1750, 2050 , 9,-174, 126);
-  TH2D *hist_g_energy = new TH2D("gamma_energy", "gamma total energy_combi2", 6, 1750, 2050 , 9,-174, 126);
+//position1
+  // TH2D *hist_p = new TH2D("proton", "proton", 20, 1755, 2045 , 5, -125, 15);
+  // TH2D *hist_g = new TH2D("gamma", "gamma",   20, 1755, 2045 , 5, -125, 15);
+  // TH2D *hist_e = new TH2D("electron", "electron",   20, 1755, 2045 , 5, -125, 15);
+  // TH2D *hist_pge = new TH2D("p_g_e", "proton+gamma+electron",   20, 1755, 2045 , 5, -125, 15);
+  // TH2D *hist_ge = new TH2D("g_e", "gamma+electron",   20, 1755, 2045 , 5, -125, 15);
+    TH2D *hist_p = new TH2D("proton", "proton entry_combi2", 20, 1755, 2045 , 5, -125, 156);
+  TH2D *hist_p_energy = new TH2D("proton_energy", "proton total energy_combi2",20, 1755, 2045 , 5, -125, 15);
+  TH2D *hist_e = new TH2D("electron", "electron entry_combi2",20, 1755, 2045 , 5, -125, 15);
+  TH2D *hist_e_energy = new TH2D("electron_energy", "electron total energy_combi2",20, 1755, 2045 , 5, -125, 15);
+  TH2D *hist_g = new TH2D("gamma", "gamma entry_combi2", 20, 1755, 2045 , 5, -125, 15);
+  TH2D *hist_g_energy = new TH2D("gamma_energy", "gamma total energy_combi2", 20, 1755, 2045 , 5, -125, 15);
+//position3 
+  // TH2D *hist_p = new TH2D("proton", "proton", 5, 1790, 1930 , 20, -123, 167);
+  // TH2D *hist_g = new TH2D("gamma", "gamma", 5, 1790, 1930 , 20, -123, 167);
+  // TH2D *hist_e = new TH2D("electron", "electron",  5, 1790, 1930 , 20, -123, 167);
+  // TH2D *hist_pge = new TH2D("p_g_e", "proton+gamma+electron",  5, 1790, 1930 , 20, -123, 167);
+  // TH2D *hist_ge = new TH2D("g_e", "gamma+electron",  5, 1790, 1930 , 20, -123, 167);
 
-  //original size , shift
-  // TH2D *hist_p = new TH2D("proton", "proton", 6, 1550, 2150 , 8,-440, 440);
-  // TH2D *hist_p_energy = new TH2D("proton_energy", "proton", 6, 1550, 2150 , 8,-440, 440);
-  // TH2D *hist_g = new TH2D("gamma", "gamma",  6, 1550, 2150 , 8,-440, 440);
-  // TH2D *hist_g_energy = new TH2D("gamma_energy", "gamma",  6, 1550, 2150 , 8,-440, 440);
-  // TH2D *hist_e = new TH2D("electron", "electron",  6, 1550, 2150 , 8,-440, 440);
-  // TH2D *hist_e_energy = new TH2D("electron_energy", "electron",  6, 1550, 2150 , 8,-440, 440);
-//             if(posz > 2025 && posz < 2050 && posy > 0 && posy < 25){
+// //position2
+  // TH2D *hist_p = new TH2D("proton", "proton", 20, 1830, 2120 , 5, -55, 85);
+  // TH2D *hist_g = new TH2D("gamma", "gamma", 20, 1830, 2120 , 5, -55, 85);
+  // TH2D *hist_e = new TH2D("electron", "electron",  20, 1830, 2120 , 5, -55, 85);
+  // TH2D *hist_pge = new TH2D("p_g_e", "proton+gamma+electron",  20, 1830, 2120 , 5, -55, 85);
+  // TH2D *hist_ge = new TH2D("g_e", "gamma+electron",  20, 1830, 2120 , 5, -55, 85);
 
-
+//pos1 (posz >1822.5  && posz<1837.5) && (posy> -70 && posy < -40)
+//pos2 (posz >2037.5  && posz<2052.5) && (posy> 0 && posy < 30)
+//pos3(posz >1852.5  && posz<1867.5) && (posy> 77 && posy < 107)
   auto Entry_KE = TVol2->GetBranch("pdg")->GetEntries() ;
  
    for (j=0;j<Entry_KE; j++){
       TVol2 -> GetEntry(j);
       if((abs(posx+231) < 0.0000001) && (strcmp(vpvol_p, "Detector2") != 0)){           
-           if((posz >1800  && posz<1850) && (posy> 60 && posy < 90)){
+           if((posz >1822.5  && posz<1837.5) && (posy> -70 && posy < -40)){
             if (sh_Pdg == 2212) {
               // hist_p -> Fill(posz, posy, sh_KE);    
              x_p.push_back(posz);
@@ -122,10 +126,10 @@ TFile *P1dfile =new TFile("out_noal.root", "read");
    // //////Draw-----///////////------------///////
   TCanvas* c3= new TCanvas("c3", "KE comparision", 20, 20, 1300, 900);
   c3->Divide(3,2);
-  c3->cd(4)->SetLogy();
-  c3->cd(5)->SetLogy();
-  c3->cd(1)->SetLogy();
-  c3->cd(2)->SetLogy();
+  // c3->cd(4)->SetLogy();
+  // c3->cd(5)->SetLogy();
+  // c3->cd(1)->SetLogy();
+  // c3->cd(2)->SetLogy();
   // c3->cd(3)->SetLogy();
     std::cout <<"proton over 1847: " <<p_count<< "\n";
     std::cout <<"gamma over 1847: " <<g_count<< "\n";
@@ -193,70 +197,70 @@ TFile *P1dfile =new TFile("out_noal.root", "read");
    gPad->Update();
 
 ////////////////////for dist
-TCanvas* c2= new TCanvas("c2", "KE comparision", 20, 20, 1300, 900);
-  c2->Divide(3,3);
+// TCanvas* c2= new TCanvas("c2", "KE comparision", 20, 20, 1300, 900);
+//   c2->Divide(3,3);
 
-c2->cd(1);
-    hist_p->GetXaxis()->SetTitle("z(mm)");
-  hist_p->GetYaxis()->SetTitle("y(mm)");
-    hist_p->SetMarkerSize(2);
-    hist_p->Draw("text same0 colz");   
+// c2->cd(1);
+//     hist_p->GetXaxis()->SetTitle("z(mm)");
+//   hist_p->GetYaxis()->SetTitle("y(mm)");
+//     hist_p->SetMarkerSize(2);
+//     hist_p->Draw("text same0 colz");   
 
-c2->cd(2);
-    hist_p_energy->GetXaxis()->SetTitle("z(mm)");
-  hist_p_energy->GetYaxis()->SetTitle("y(mm)");
-    hist_p_energy->SetMarkerSize(2);
-    hist_p_energy->Draw("text same0 colz");   
+// c2->cd(2);
+//     hist_p_energy->GetXaxis()->SetTitle("z(mm)");
+//   hist_p_energy->GetYaxis()->SetTitle("y(mm)");
+//     hist_p_energy->SetMarkerSize(2);
+//     hist_p_energy->Draw("text same0 colz");   
 
-    c2->cd(3);
-    TH2D *h2_ratio = (TH2D*)hist_p_energy->Clone("h2_ratio");
-    h2_ratio->Divide(hist_p);
-    h2_ratio->SetTitle("proton mean energy");
-    h2_ratio->SetStats(0);  
-      h2_ratio->GetXaxis()->SetTitle("z(mm)");
-    h2_ratio->GetYaxis()->SetTitle("y(mm)");
-    h2_ratio->Draw(" text same0 colz");
+//     c2->cd(3);
+//     TH2D *h2_ratio = (TH2D*)hist_p_energy->Clone("h2_ratio");
+//     h2_ratio->Divide(hist_p);
+//     h2_ratio->SetTitle("proton mean energy");
+//     h2_ratio->SetStats(0);  
+//       h2_ratio->GetXaxis()->SetTitle("z(mm)");
+//     h2_ratio->GetYaxis()->SetTitle("y(mm)");
+//     h2_ratio->Draw(" text same0 colz");
 
-c2->cd(4);
-    hist_g->GetXaxis()->SetTitle("z(mm)");
-  hist_g->GetYaxis()->SetTitle("y(mm)");
-    hist_g->SetMarkerSize(2);
-    hist_g->Draw("text same0 colz");   
+// c2->cd(4);
+//     hist_g->GetXaxis()->SetTitle("z(mm)");
+//   hist_g->GetYaxis()->SetTitle("y(mm)");
+//     hist_g->SetMarkerSize(2);
+//     hist_g->Draw("text same0 colz");   
 
-c2->cd(5);
-    hist_g_energy->GetXaxis()->SetTitle("z(mm)");
-  hist_g_energy->GetYaxis()->SetTitle("y(mm)");
-    hist_g_energy->SetMarkerSize(2);
-    hist_g_energy->Draw("text same0 colz");   
+// c2->cd(5);
+//     hist_g_energy->GetXaxis()->SetTitle("z(mm)");
+//   hist_g_energy->GetYaxis()->SetTitle("y(mm)");
+//     hist_g_energy->SetMarkerSize(2);
+//     hist_g_energy->Draw("text same0 colz");   
 
-    c2->cd(6);
-    TH2D *h1_ratio = (TH2D*)hist_g_energy->Clone("h1_ratio");
-    h1_ratio->Divide(hist_g);
-    h1_ratio->SetTitle("gamma mean energy");
-    h1_ratio->SetStats(0);  
-      h1_ratio->GetXaxis()->SetTitle("z(mm)");
-    h1_ratio->GetYaxis()->SetTitle("y(mm)");
-    h1_ratio->Draw(" text same0 colz");
+//     c2->cd(6);
+//     TH2D *h1_ratio = (TH2D*)hist_g_energy->Clone("h1_ratio");
+//     h1_ratio->Divide(hist_g);
+//     h1_ratio->SetTitle("gamma mean energy");
+//     h1_ratio->SetStats(0);  
+//       h1_ratio->GetXaxis()->SetTitle("z(mm)");
+//     h1_ratio->GetYaxis()->SetTitle("y(mm)");
+//     h1_ratio->Draw(" text same0 colz");
 
 
-c2->cd(7);
-    hist_e->GetXaxis()->SetTitle("z(mm)");
-  hist_e->GetYaxis()->SetTitle("y(mm)");
-    hist_e->SetMarkerSize(2);
-    hist_e->Draw("text same0 colz");   
+// c2->cd(7);
+//     hist_e->GetXaxis()->SetTitle("z(mm)");
+//   hist_e->GetYaxis()->SetTitle("y(mm)");
+//     hist_e->SetMarkerSize(2);
+//     hist_e->Draw("text same0 colz");   
 
-c2->cd(8);
-    hist_e_energy->GetXaxis()->SetTitle("z(mm)");
-  hist_e_energy->GetYaxis()->SetTitle("y(mm)");
-    hist_e_energy->SetMarkerSize(2);
-    hist_e_energy->Draw("text same0 colz");   
+// c2->cd(8);
+//     hist_e_energy->GetXaxis()->SetTitle("z(mm)");
+//   hist_e_energy->GetYaxis()->SetTitle("y(mm)");
+//     hist_e_energy->SetMarkerSize(2);
+//     hist_e_energy->Draw("text same0 colz");   
 
-    c2->cd(9);
-    TH2D *h3_ratio = (TH2D*)hist_e_energy->Clone("h3_ratio");
-    h3_ratio->Divide(hist_e);
-    h3_ratio->SetTitle("electron mean energy");
-    h3_ratio->SetStats(0);  
-      h3_ratio->GetXaxis()->SetTitle("z(mm)");
-    h3_ratio->GetYaxis()->SetTitle("y(mm)");
-    h3_ratio->Draw(" text same0 colz");
+//     c2->cd(9);
+//     TH2D *h3_ratio = (TH2D*)hist_e_energy->Clone("h3_ratio");
+//     h3_ratio->Divide(hist_e);
+//     h3_ratio->SetTitle("electron mean energy");
+//     h3_ratio->SetStats(0);  
+//       h3_ratio->GetXaxis()->SetTitle("z(mm)");
+//     h3_ratio->GetYaxis()->SetTitle("y(mm)");
+//     h3_ratio->Draw(" text same0 colz");
 }

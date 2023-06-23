@@ -14,7 +14,7 @@ void ent_det2_en_deta()
 {
     gROOT->Reset();
 
-TFile *P1dfile =new TFile("Pb_108_komac_noshield.root", "read");
+TFile *P1dfile =new TFile("Pb_108_final_2.root", "read");
 
 
   TTree *TVol2 = (TTree *) P1dfile -> Get("Detector_2");
@@ -70,8 +70,8 @@ TFile *P1dfile =new TFile("Pb_108_komac_noshield.root", "read");
  
    for (j=0;j<Entry_KE; j++){
       TVol2 -> GetEntry(j);
-      if((abs(posx+225) < 0.0000001) && (strcmp(vpvol_p, "Detector2") != 0)){           
-           if((posz >1800  && posz<1860) && (posy> -40 && posy < -10)){
+      if((abs(posx-215) < 0.0000001) && (strcmp(vpvol_p, "Detector2") != 0)){           
+           if((posz >2050  && posz<2350) && (posy> -150 && posy < 150)){
             if (sh_Pdg == 2212) {
 
               KE_p_over->Fill(sh_KE);

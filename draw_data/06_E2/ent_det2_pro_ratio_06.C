@@ -10,11 +10,11 @@
 //entering shield- total particle 
 //entering shield- E dist of p,r,n
 using namespace std;
-void ent_det2_pro_ratio()
+void ent_det2_pro_ratio_06()
 {
     gROOT->Reset();
 
-  TFile *P1dfile =new TFile("out_M123456.root", "read");
+  TFile *P1dfile =new TFile("out_06_p1_Z.root", "read");
 
 
   TTree *TVol2 = (TTree *) P1dfile -> Get("Detector_2");
@@ -25,8 +25,10 @@ void ent_det2_pro_ratio()
 
   int j;
   int counte;
-  Double_t max=1;
-  Double_t min=10000000;
+  Double_t ymax=1;
+  Double_t ymin=10000000;  
+  Double_t zmax=1;
+  Double_t zmin=10000000;
    int p_count = 0 ;  
   int g_count = 0 ;  
   int e_count = 0 ;
@@ -38,27 +40,25 @@ void ent_det2_pro_ratio()
   TVol2 -> SetBranchAddress("pz",&posz);
   TVol2 -> SetBranchAddress("vpvol",&vpvol_p); 
 
-// //original 100 bin
-  TH2D *hist = new TH2D("All", "All particle", 20, 1750, 2050 , 15, -174, 126);
-  TH2D *hist_p = new TH2D("proton", "proton", 20, 1750, 2050 , 15, -174, 126);
-  TH2D *hist_g = new TH2D("gamma", "gamma",  20, 1750, 2050 , 15,-174, 126);
-  TH2D *hist_e = new TH2D("electron", "electron",  20, 1750, 2050 , 15, -174, 126);
-  TH2D *hist_pge = new TH2D("p_g_e", "proton+gamma+electron",  20, 1750, 2050 , 15, -174, 126);
-  TH2D *hist_ge = new TH2D("g_e", "gamma+electron",  20, 1750, 2050 , 15, -174, 126);
-  
-// //original size , non shift
-//   TH2D *hist_p = new TH2D("proton", "proton", 6, 2050, 2350 , 9,-150, 150);
-//   TH2D *hist_g = new TH2D("gamma", "gamma",  6,  2050, 2350 , 9,-150, 150);
-//   TH2D *hist_e = new TH2D("electron", "electron",  6,  2050, 2350 , 9,-150, 150);
-//   TH2D *hist_pge = new TH2D("p_g_e", "proton+gamma+electron",  6,  2050, 2350, 9,-150, 150);
-//   TH2D *hist_ge = new TH2D("g_e", "gamma+electron_dump",  6, 2050, 2350 , 9,-150, 150);
+//position1
+  TH2D *hist_p = new TH2D("proton", "proton", 20, 1755, 2045 , 5, -125, 15);
+  TH2D *hist_g = new TH2D("gamma", "gamma",   20, 1755, 2045 , 5, -125, 15);
+  TH2D *hist_e = new TH2D("electron", "electron",   20, 1755, 2045 , 5, -125, 15);
+  TH2D *hist_pge = new TH2D("p_g_e", "proton+gamma+electron",   20, 1755, 2045 , 5, -125, 15);
+  TH2D *hist_ge = new TH2D("g_e", "gamma+electron",   20, 1755, 2045 , 5, -125, 15);
+//position3 
+  // TH2D *hist_p = new TH2D("proton", "proton", 5, 1790, 1930 , 20, -123, 167);
+  // TH2D *hist_g = new TH2D("gamma", "gamma", 5, 1790, 1930 , 20, -123, 167);
+  // TH2D *hist_e = new TH2D("electron", "electron",  5, 1790, 1930 , 20, -123, 167);
+  // TH2D *hist_pge = new TH2D("p_g_e", "proton+gamma+electron",  5, 1790, 1930 , 20, -123, 167);
+  // TH2D *hist_ge = new TH2D("g_e", "gamma+electron",  5, 1790, 1930 , 20, -123, 167);
 
-// //original size , shift
-//   TH2D *hist_p = new TH2D("proton", "proton", 6, 1550, 2150 , 8,-440, 440);
-//   TH2D *hist_g = new TH2D("gamma", "gamma",  6, 1550, 2150 , 8,-440, 440);
-//   TH2D *hist_e = new TH2D("electron", "electron",  6, 1550, 2150 , 8,-440, 440);
-//   TH2D *hist_pge = new TH2D("p_g_e", "proton+gamma+electron", 6, 1550, 2150 , 8,-440, 440);
-//   TH2D *hist_ge = new TH2D("g_e", "gamma+electron_dump",  6, 1550, 2150 , 8,-440, 440);
+// //position2
+  // TH2D *hist_p = new TH2D("proton", "proton", 20, 1830, 2120 , 5, -55, 85);
+  // TH2D *hist_g = new TH2D("gamma", "gamma", 20, 1830, 2120 , 5, -55, 85);
+  // TH2D *hist_e = new TH2D("electron", "electron",  20, 1830, 2120 , 5, -55, 85);
+  // TH2D *hist_pge = new TH2D("p_g_e", "proton+gamma+electron",  20, 1830, 2120 , 5, -55, 85);
+  // TH2D *hist_ge = new TH2D("g_e", "gamma+electron",  20, 1830, 2120 , 5, -55, 85);
 
 //      if((abs(posx-215) < 0.0000001) && ((strcmp(vpvol_p, "Pb_Shield") == 0) ||(strcmp(vpvol_p, "World") == 0)||(strcmp(vpvol_p, "Dump") == 0))){           
 // For 05KOMAC       if((abs(posx+231) < 0.0000001) && (strcmp(vpvol_p, "Detector2") != 0)){   
@@ -90,21 +90,29 @@ void ent_det2_pro_ratio()
               hist_ge ->Fill(posz, posy); 
             }
           //}
-          if (posy > max) {
-      max = posy;
+          if (posy > ymax) {
+      ymax = posy;
     }
-              if (posy < min) {
-      min = posy;
+              if (posy < ymin) {
+      ymin = posy;
+    }
+                  if (posz > zmax) {
+      zmax = posz;
+    }
+              if (posz < zmin) {
+      zmin = posz;
     }
       }
-   }
+
+      }
+   
 
    // //////Draw-----///////////------------///////
   TCanvas* c3= new TCanvas("c3", "KE comparision", 20, 20, 1300, 650);
     c3->Divide(3,2);
-    c3->cd(1)->SetLogz();
-    c3->cd(2)->SetLogz();
-    c3->cd(3)->SetLogz();
+    // c3->cd(1)->SetLogz();
+    // c3->cd(2)->SetLogz();
+    // c3->cd(3)->SetLogz();
 
     std::cout <<"proton: " <<p_count<< "\n";
     std::cout <<"gamma: " <<g_count<< "\n";
@@ -118,8 +126,10 @@ void ent_det2_pro_ratio()
     hist_p->Draw("colz");    
     // hist_p->Draw("text same0 colz");    
 
-    std::cout <<"max: " <<max<< "\n";
-    std::cout <<"min: " <<min<< "\n";
+    std::cout <<"ymax: " <<ymax<< "\n";
+    std::cout <<"ymin: " <<ymin<< "\n";   
+    std::cout <<"zmax: " <<zmax<< "\n";
+    std::cout <<"zmin: " <<zmin<< "\n";
 
     c3->cd(2);
     hist_g->GetXaxis()->SetTitle("z(mm)");
